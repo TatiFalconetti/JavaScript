@@ -1,0 +1,62 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JavaScript 2</title>
+
+		<style type="text/css">
+				.red{
+					color: red;
+				}
+				.bk_red{
+					background-color: red;
+				}
+		</style>
+	</head>
+
+	<body>
+		<div id="addTo0"></div>
+	 	<div id="addTo1"></div>
+	 	<div id="addTo2"></div>
+	 	<br><br>
+	 	<div id="testHTML"></div>
+
+		<script>	
+			// Прототип для строк
+			String.prototype.addToElement = function (tagName, tagName) {
+			    return '<' + tagName + ' class="' + tagName + '">' + this + '</' + tagName + '>';
+			};
+
+			var string = "Тестируем расширение для всех строковых объектов";
+			document.getElementById("addTo0").innerHTML = string;
+			document.getElementById("addTo1").innerHTML = string.addToElement("div", "red");
+			document.getElementById("addTo2").innerHTML = string.addToElement("span", "bk_red");
+
+			// HTML-объект
+			var myHTML = function () 
+			{
+			    this.str = "";
+
+			    this.addText = function (str) {
+			        return this.str += str;
+			    }
+
+			    this.addH = function (str, n) {
+			        n = parseInt(n);
+			        return this.str += '<h' + n + '>' + str + '</h' + n + '>';
+			    }
+
+			    this.showHTML = function () {
+			        return this.str;
+			    }
+			}
+
+			var testHtml = new myHTML();
+			testHtml.addText("Создаем объект myHTML, который работает с HTML-строкой.");
+			for (var i = 1; i<=6; i++)
+				testHtml.addH("Заголовок h" + i, i);
+			document.getElementById("testHTML").innerHTML = testHtml.showHTML();
+
+		</script> 
+	</body>
+</html>

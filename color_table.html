@@ -1,0 +1,62 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<title>JavaScript 1</title>
+		<meta content="text/html; charset=utf-8" http-equiv="content-type"/>	
+		<script language="javascript">	
+
+			function getArrayLetter() {
+				var arrLetter = new Array();
+				var code = ('а').charCodeAt(0);
+				for(var i = 0; i < 32; i++)
+					arrLetter[i] = String.fromCharCode(code++);
+			}
+
+			function getLetter() {
+				return String.fromCharCode(Math.floor(Math.random() * 32) + ('а').charCodeAt(0));
+			}
+						
+			function getRandomColor() {
+				return Math.floor(Math.random() * 256);
+			}
+
+			function getRGB() {
+				var color = "rgb(" + getRandomColor() + "," + getRandomColor() + "," + getRandomColor() + ")";
+				return color;
+			}
+
+			window.onload = function createTable() { 
+
+				var M = prompt("Введите размер таблицы\nЧисло строк M",5);
+				var N = prompt("Введите размер таблицы\nЧисло столбцов N",5);
+
+			    var table = document.createElement("table");
+			     
+			   for(var i = 0; i < M; i++)
+			   {
+			   	var row = table.insertRow(i);
+
+				for(var j = 0; j < N; j++)
+				{
+				    var cell = row.insertCell(j);
+				    
+				    cell.width = "50";
+				    cell.height = "50";
+				    cell.align = "center";
+
+				    cell.innerText = getLetter();
+				    cell.style.backgroundColor = getRGB();
+				}
+			   }
+			   	document.body.appendChild(table);
+			} 
+
+		</script> 
+	</head>
+
+	<body>
+		<div id="content">
+		</div>
+
+	</body>
+</html>
