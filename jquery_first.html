@@ -1,0 +1,68 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JavaScript 3</title>
+
+		<script src="jquery-2.2.3.min.js"></script>
+		 <style>
+        	.result {
+        		font-size: 30 px;
+        	}
+    	</style>
+		<script type="text/javascript">
+			window.onload = function()
+			{
+				// 1. Найти все элементы h1, являющиеся потомками div и заменить их содержимое на произвольное
+				$("div h1").text("Произвольное содержимое");
+
+				// 2. Установить всем input type="text" произвольное содержимое. Содержимое второго инпута должно отличаться от первого
+				$(":text").val("Произвольное 1").eq(1).val("Произвольное 2 != Произвольное 1");
+
+				// 3. Выведите значение option с value=2
+				$('#myselectOption').text("Значение option с value = 2: " + $("option[value ='2']").text()).addClass("result");
+
+				// 4. Обернуть текст во втором li тегом b
+				$("ul li").eq(1).wrapInner("<b>");
+
+				// 5. Извлеките последний li из предыдущего примера
+				$('#myListLast').text("Последний li: " + $("ul li").last().text()).addClass("result");
+			}
+		</script>
+	</head>
+
+	<body>
+		<div>1. Найти все элементы h1, являющиеся потомками div и заменить их содержимое на произвольное</div>
+	    <h1>abc</h1>
+	    <div>
+	        <h1>div-1</h1>
+	        <h1>div-2</h1>
+	    </div>
+	    <h1>xyz</h1>
+		<br>
+		<div>2. Установить всем input type="text" произвольное содержимое. Содержимое второго инпута должно отличаться от первого</div>
+	    <form name='demo_form'>
+	        <label>First name: <input type="text" name="fname"></label><br>
+	        <label>Last name: <input type="text" name="lname"></label><br>
+	        <input type="submit" value="Submit">
+	    </form>
+	    <br>
+	    <div>3. Выведите значение option с value=2</div>
+	    <select id="myselect">
+	        <option value="1">Option-1</option>
+	        <option value="2">Option-2</option>
+	        <option value="3">Option-3</option>
+	    </select><br>
+	    <div id='myselectOption'></div>
+		<br>
+		<div>4. Обернуть текст во втором li тегом b</div>
+	    <ul>
+	        <li>Html Tutorial</li>
+	        <li>Mongodb Tutorial</li>
+	        <li>Python Tutorial</li>
+	    </ul>
+	    <div>5. Извлеките последний li из предыдущего примера</div>
+	    <div id='myListLast'></div>
+
+	</body>
+</html>
