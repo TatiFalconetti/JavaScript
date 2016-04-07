@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JavaScript 4</title>
+		 <style>
+            .tab li {
+                box-sizing: border-box;
+                list-style-type: none;
+                display: inline-block;
+                padding: 10px 10px;
+                border: 1px solid transparent;
+                border-bottom: 1px solid darkgrey;
+            }
+
+            .tab li:hover {
+                border: 1px solid darkgrey;
+                border-bottom: 0;
+                background-color: lightgray;
+            }
+
+            .tab li.activated {
+                padding-top: 15px;
+                border: 1px solid darkgrey;
+                border-bottom: 1px solid white;
+            }
+
+            .tab_content {
+                box-sizing: border-box;
+                padding: 30px 20px;
+            }
+
+            .tab_content div:first-child {
+                display: block;
+            }
+
+            .tab_content div {
+                display: none;
+            }
+    	</style>
+
+		<script src="jquery-2.2.3.min.js"></script>
+		<script type="text/javascript">
+            (function($) {
+                $(function() {
+                    $(".tab").on("click", "li:not(.activated)", function () {
+                        $(this).addClass("activated").siblings().removeClass("activated");
+                        $(".tab_content div").eq($(this).index()).show().siblings().hide();
+                    });
+                });
+            })(jQuery);
+		</script>
+	</head>
+
+	<body>
+    <div>
+        <ul class="tab">
+            <li class="activated">Вкладка 1</li>
+            <li>Вкладка 2</li>
+            <li>Вкладка 3</li>
+            <li>Вкладка 4</li>
+            <li>Вкладка 5</li>
+        </ul>
+        <div class="tab_content">
+            <div class="activated">
+                <h3>Заголовок 1</h3>
+                <p>Абзац 1</p>
+            </div>
+            <div>
+                <h3>Заголовок 2</h3>
+                <p>Абзац 2</p>
+            </div>
+            <div>
+                <h3>Заголовок 3</h3>
+                <p>Абзац 3</p>
+            </div>
+            <div>
+                <h3>Заголовок 4</h3>
+                <p>Абзац 4</p>
+            </div>
+            <div>
+                <h3>Заголовок 5</h3>
+                <p>Абзац 5</p>
+            </div>
+        </div>
+    </div>
+	</body>
+</html>
