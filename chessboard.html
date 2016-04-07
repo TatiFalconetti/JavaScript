@@ -5,17 +5,24 @@
 		<title>JavaScript 2</title>
 
 		<style>
-				.active{
+				.activated{
 					background-color: red;
 				}
 				.board{
-					border: 1;
+					border: 1px solid black;
 					border-collapse: collapse;
 				}
 				.cell{
-					width: 50;
-					height: 50;
-					align: center;
+					width: 50px;
+					height: 50px;
+					text-align: center;
+					border: 1px solid black;
+				}
+				.cell.white{
+					background-color: white;
+				}
+				.cell.black{
+					background-color: black;
 				}
 		</style>
 
@@ -27,10 +34,7 @@
 			   var log = document.createElement("div"); // Доска
 			   table.tabIndex = tabIndex;
 
-			   //table.classList.add('board'); // ?? Задаем стиль таблицы 
-			   table.setAttribute("class", "board");
-			   table.border = 1;
-			   table.style.borderCollapse = "collapse";
+			   table.classList.add('board'); // Задаем стиль таблицы 
 			   // -----------------------------------------------------
 
 			   for(var i = 0; i < 10; i++) // Строки
@@ -42,10 +46,7 @@
 					{
 					    var cell = row.insertCell(j);	
 					    cell.name = "";
-					    //cell.classList.add('cell'); // ?? Задаем стиль ячейки
-					    cell.width = '50';
-						cell.height = '50';
-						cell.align = 'center';
+					    cell.classList.add('cell'); // Задаем стиль ячейки
 						//--------------------------------------------------
 
 					    if ((j == 0) || (j == 9)) // Для вертикальных подписей
@@ -65,12 +66,14 @@
 								if ((i%2 == 1 && j%2 == 1) || (i%2 == 0 && j%2 == 0)) // Красим ячейки
 								{
 									cell.setAttribute("cellColor", "white");
-									cell.style.backgroundColor = "white";
+									//cell.style.backgroundColor = "white";
+									cell.classList.add('white');
 								}
 								else
 								{
 									cell.setAttribute("cellColor", "black");
-									cell.style.backgroundColor = "black";
+									//cell.style.backgroundColor = "black";
+									cell.classList.add('black');
 								}	
 							}
 					    } 			
@@ -79,6 +82,7 @@
 				// Добавляем таблицу и лог
 			   	document.body.appendChild(table);
 			   	document.body.appendChild(log);
+			   	//table.children[0].children[1].children[1].classList.add('activated');
 			   	table.children[0].children[1].children[1].style.backgroundColor = "red"; // Выделяем первую ячейку для примера
 
 			var row = 1, col = 1;
@@ -92,10 +96,10 @@
 				color = table.children[0].children[row].children[col].getAttribute("cellColor");
 				if (flag)
 					table.children[0].children[row].children[col].style.backgroundColor = "red";
-					//table.children[0].children[row].children[col].classList.add('active'); // ?? Попытка навесить класс
+					//table.children[0].children[row].children[col].classList.add('activated'); // ?? Попытка навесить класс
 				else
 					table.children[0].children[row].children[col].style.backgroundColor = color;
-					//table.children[0].children[row].children[col].classList.remove('active'); // ?? Попытка навесить класс
+					//table.children[0].children[row].children[col].classList.remove('activated'); // ?? Попытка навесить класс
 
 				log.innerHTML = "<br>Слон на " + table.children[0].children[row].children[col].name; // Выводим название выбранной ячейки
 			}
